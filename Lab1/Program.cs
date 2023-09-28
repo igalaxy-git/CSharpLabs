@@ -23,15 +23,31 @@ for (int i = 0; i < N; i++)
     }
 
     if (isItPositive)
-    {
         sum += array[i];
-    }
 
     if (array[i] > 0)
-    {
         isItPositive = true;
-    }
 }
 Console.WriteLine();
 Console.WriteLine(absMaxIndex);
 Console.WriteLine(sum);
+
+int a = Convert.ToInt32(Console.ReadLine());
+int b = Convert.ToInt32(Console.ReadLine());
+int[] AB = new int[N];
+int[] notAB = new int[N];
+int firstIndex = 0;
+int secondIndex = 0;
+for (int i = 0; i < N; i++)
+{
+    if (array[i] >= a && array[i] <= b)
+        AB[firstIndex++] = array[i];
+    else
+        notAB[secondIndex++] = array[i];
+}
+
+AB = AB.Take(firstIndex).ToArray();
+notAB = notAB.Take(secondIndex).ToArray();
+array = AB.Concat(notAB).ToArray();
+for (int i = 0; i < N; i++)
+    Console.Write(array[i] + " ");
