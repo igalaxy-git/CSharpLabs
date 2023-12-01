@@ -1,37 +1,21 @@
-﻿// Вариант 11
-// В одномерном массиве, состоящем из N вещественных элементов, вычислить:
-// номер максимального по модулю элемента массива
-// сумму элементов массива, расположенных после первого положительного элемента.
-// Преобразовать массив таким образом, чтобы сначала располагались все элементы, целая часть которых лежит в интервале [а, b], а потом — все остальные.
+﻿using CSharpLabs;
 
-Random rnd = new Random();
-int N = Convert.ToInt32(Console.ReadLine());
-int[] array = new int[N];
-int absMax = 0;
-int absMaxIndex = 0;
-int sum = 0;
-bool isItPositive = false;
+var l1 = new Lab1();
 
-for (int i = 0; i < N; i++)
-{
-    array[i] = rnd.Next(-10, 10);
-    Console.Write(array[i] + " ");
-    if (Math.Abs(array[i]) > absMax)
-    {
-        absMax = Math.Abs(array[i]);
-        absMaxIndex = i;
-    }
+var tryParseN = uint.TryParse(Console.ReadLine(), out var N);
+while (!tryParseN)
+    tryParseN = uint.TryParse(Console.ReadLine(), out N);
 
-    if (isItPositive)
-    {
-        sum += array[i];
-    }
+int[] array = l1.InitArray((int) N);
+l1.PrintArray(array);
+Console.WriteLine(l1.FindAbsMaxIndex(array));
+Console.WriteLine(l1.FindSumAfterFirstPositive(array));
 
-    if (array[i] > 0)
-    {
-        isItPositive = true;
-    }
-}
-Console.WriteLine();
-Console.WriteLine(absMaxIndex);
-Console.WriteLine(sum);
+var tryParseA = int.TryParse(Console.ReadLine(), out var a);
+while (!tryParseA)
+    tryParseA = int.TryParse(Console.ReadLine(), out a);
+var tryParseB = int.TryParse(Console.ReadLine(), out var b);
+while (!tryParseB)
+    tryParseB = int.TryParse(Console.ReadLine(), out b);
+array = l1.RearrangeArray(a, b, array);
+l1.PrintArray(array);
