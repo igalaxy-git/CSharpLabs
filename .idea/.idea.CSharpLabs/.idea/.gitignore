@@ -1,0 +1,24 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/.idea.CSharpLabs.iml
+/contentModel.xml
+/projectSettingsUpdater.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
+.csproj
+/.idea
+/.git
+.sln
+CSharpLabs.sln.DotSettings.user
+/Lab1/bin
+/Lab1/obj
+.cache
+/TestLab11/bin
+/TestLab1/obj
