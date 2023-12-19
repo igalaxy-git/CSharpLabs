@@ -9,4 +9,8 @@
 
 
 
+    <ItemGroup>
+      <Compile Remove="Service.cs" />
+    </ItemGroup>
+
 </Project>

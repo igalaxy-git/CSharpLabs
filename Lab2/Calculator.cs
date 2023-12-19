@@ -1,24 +1,28 @@
 using Lab2.Commands;
 
-namespace CSharpLabs;
+namespace Lab2;
 
 using System;
 
 public class Calculator
 {
     private static Dictionary<string, ICommand> commandCollection;
-    public static List<double> numbers = new List<double>();
-    public static int current_index = -1;
+    public static Storage storage;
+    public static int CurrentIndex = -1;
     
     public Calculator()
     {
+        ConfigStorage();
         Instruction();
-        
         GetOperand();
         ShowLastNumber();
-        
         InitOperators();
         while (true){GetOperator();}
+    }
+
+    private static void ConfigStorage()
+    {
+        storage = new Storage() { Numbers = new List<double>() };
     }
 
     private static void Instruction()
@@ -31,7 +35,7 @@ public class Calculator
         Console.WriteLine("‘q’ to exit");
     }
 
-    public static double GetOperand()
+    public static void GetOperand()
     {
         Console.Write("> ");
         var tryParseInput = double.TryParse(Console.ReadLine(), out var input);
@@ -42,17 +46,16 @@ public class Calculator
             tryParseInput = double.TryParse(Console.ReadLine(), out input);
         }
 
-        numbers.Add(input);
-        current_index += 1;
-        return input;
+        storage.Numbers.Add(input);
+        CurrentIndex += 1;
     }
 
     public static void ShowLastNumber()
     {
-        Console.WriteLine("[#" + (current_index + 1) + "] = " + numbers[current_index]);
+        Console.WriteLine("[#" + (CurrentIndex + 1) + "] = " + storage.Numbers[CurrentIndex]);
     }
     
-    public static void InitOperators()
+    private static void InitOperators()
     {
         commandCollection = new Dictionary<string, ICommand>();
         Plus.Init(commandCollection);
@@ -61,7 +64,7 @@ public class Calculator
         Divide.Init(commandCollection);
         Quit.Init(commandCollection);
     }
-    public static void GetOperator()
+    private static void GetOperator()
     {
         Console.Write("@ ");
         string input = Console.ReadLine();
@@ -83,7 +86,7 @@ public class Calculator
             try
             {
                 int index = Convert.ToInt16(input.Substring(1));
-                Console.WriteLine(input + " = " + numbers[index-1]);
+                Console.WriteLine(input + " = " + storage.Numbers[index-1]);
             }
             catch (Exception e)
             {

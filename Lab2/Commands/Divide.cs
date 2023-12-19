@@ -1,5 +1,3 @@
-using CSharpLabs;
-
 namespace Lab2.Commands;
 
 public class Divide:IInitCommand
@@ -16,10 +14,10 @@ public class Divide:IInitCommand
     public void do_command()
     {
         Calculator.GetOperand();
-        double result = Calculator.numbers[Calculator.current_index - 1] / Calculator.numbers[Calculator.current_index];
+        double result = Calculator.storage.Numbers[Calculator.CurrentIndex - 1] / Calculator.storage.Numbers[Calculator.CurrentIndex];
         if (result.Equals(Double.NaN))
             result = 0;
-        Calculator.numbers[Calculator.current_index] = result;
+        Calculator.storage.Numbers[Calculator.CurrentIndex] = result;
         Calculator.ShowLastNumber();
     }
 }

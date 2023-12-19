@@ -1,4 +1,4 @@
-﻿namespace CSharpLabs;
+﻿namespace Lab2;
 
 class Program
 { 

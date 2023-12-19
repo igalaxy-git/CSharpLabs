@@ -1,5 +1,3 @@
-using CSharpLabs;
-
 namespace Lab2.Commands;
 
 public class Minus:IInitCommand
@@ -16,7 +14,7 @@ public class Minus:IInitCommand
     public void do_command()
     {
         Calculator.GetOperand();
-        Calculator.numbers[Calculator.current_index] -= Calculator.numbers[Calculator.current_index-1];
+        Calculator.storage.Numbers[Calculator.CurrentIndex] -= Calculator.storage.Numbers[Calculator.CurrentIndex-1];
         Calculator.ShowLastNumber();
     }
 }
