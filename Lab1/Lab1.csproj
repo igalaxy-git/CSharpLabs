@@ -5,21 +5,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>CSharpLabs</RootNamespace>
     </PropertyGroup>
-
-
-
-    <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.13" />
-    </ItemGroup>
-
-
-
-    <ItemGroup>
-      <Folder Include="data\" />
-    </ItemGroup>
-
-
-
 
 </Project>
