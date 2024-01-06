@@ -1,0 +1,39 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Lab5.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:Lab5.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Lab5.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Lab5"
+        MinHeight="320"
+        MinWidth="500"
+        Height="320"
+        Width="500">
+
+    <Design.DataContext>
+        <viewModels:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <TabControl>
+        <TabItem Header="Calculator" >
+            <StackPanel Spacing="10">
+                <TextBlock>Usage:</TextBlock>
+                <TextBlock>operation is one of ‘+’, ‘-‘, ‘/’, ‘*’ or</TextBlock>
+                <TextBlock>‘#’ followed with number of evaluation step</TextBlock>
+                <TextBlock x:Name="Instruction">Enter a number:</TextBlock>
+                <TextBox Text="{Binding Input}" x:Name="Input"/>
+                <Button Click="Button_OnClick">Submit</Button>
+                <TextBlock>Output:</TextBlock>
+                <TextBox Text="{Binding Output, Mode=OneWay}"
+                         IsReadOnly="True"
+                         FontWeight="Bold" 
+                         x:Name="Output" />
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+
+</Window>
