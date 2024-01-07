@@ -1,57 +1,36 @@
-using System.ComponentModel;
-using Lab4;
+using Microsoft.EntityFrameworkCore;
+using Lab4.Data;
 
-namespace Lab4
+internal class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase("NumbersDb"));
+
+// Add services to the container.
+
+        builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+
+        var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
         {
-            var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container.
-            builder.Services.AddAuthorization();
-
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-
-
-            var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-
-            app.UseHttpsRedirection();
-
-            app.UseAuthorization();
-
-            TypeDescriptor.AddAttributes(typeof(Double));
-
-            AppDbContext context = new AppDbContext("db.sqlite");
-
-            Calculator service = new Calculator(context);
-
-            app.MapGet("/get operator", (HttpContext httpContext, string op) =>
-            {
-                return service.GetOperator(op);
-            })
-            .WithName("GetOperator")
-            .WithOpenApi();
-
-            app.MapGet("/get operand", (HttpContext httpContext, DateOnly from, DateOnly to) =>
-            {
-                return service.GetOperand();
-            })
-            .WithName("GetOperand")
-            .WithOpenApi();
-
-
-            app.Run();
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
+
+        app.UseHttpsRedirection();
+
+        app.UseAuthorization();
+
+        app.MapControllers();
+
+        app.Run();
     }
 }
