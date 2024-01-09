@@ -1,8 +1,8 @@
 using CSharpLabs;
 
-namespace TestProject1;
+namespace TestProject;
 
-public class UnitTest1
+public class UnitTestLab2
 {
     [Theory]
     [InlineData(3, 10, new int[] {8, 3, 0, -4, -6, 12, -1}, new int[] {0, -4, -6, 8, 12, 3, -1})]
